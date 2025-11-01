@@ -5,482 +5,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SrValo - CV  & Development</title>
+    <title>SrValo - CV & Development</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{
+            font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+            background:linear-gradient(135deg,#0f0f0f 0%,#1a1a2e 50%,#16213e 100%);
+            color:#fff;overflow-x:hidden;min-height:100vh;
+            display:flex;align-items:center;justify-content:center;
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
-            color: #fff;
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;}
+        .particle{position:absolute;width:4px;height:4px;background:#00ff88;border-radius:50%;animation:float 6s ease-in-out infinite;box-shadow:0 0 10px #00ff88;}
+        @keyframes float{0%,100%{transform:translateY(0px)rotate(0deg);opacity:0;}10%{opacity:1;}90%{opacity:1;}50%{transform:translateY(-100px)rotate(180deg);}}
+        .main-container{display:flex;max-width:1400px;width:100%;gap:20px;padding:20px;position:relative;z-index:2;}
+        .side-panel,.right-panel{
+            flex:0 0 300px;background:rgba(255,255,255,0.05);
+            border-radius:20px;backdrop-filter:blur(10px);
+            border:1px solid rgba(255,255,255,0.1);padding:30px;height:fit-content;position:sticky;top:20px;
         }
-
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #00ff88;
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-            box-shadow: 0 0 10px #00ff88;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            50% { transform: translateY(-100px) rotate(180deg); }
-        }
-
-        .main-container {
-            display: flex;
-            max-width: 1400px;
-            width: 100%;
-            gap: 20px;
-            padding: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .side-panel {
-            flex: 0 0 300px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            height: fit-content;
-            position: sticky;
-            top: 20px;
-        }
-
-        .center-content {
-            flex: 1;
-            max-width: 800px;
-        }
-
-        .right-panel {
-            flex: 0 0 300px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            height: fit-content;
-            position: sticky;
-            top: 20px;
-        }
-
-        .avatar {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(45deg, #00ff88, #00ccff);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            font-weight: bold;
-            animation: pulse 2s ease-in-out infinite;
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #00ff88, #00ccff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-align: center;
-        }
-
-        .java-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #ed1d24, #f7931e);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
-            margin: 10px auto;
-            display: block;
-            width: fit-content;
-            box-shadow: 0 0 20px rgba(237, 29, 36, 0.5);
-            animation: pulse-badge 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse-badge {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(237, 29, 36, 0.5); }
-            50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(237, 29, 36, 0.8); }
-        }
-
-        .section {
-            background: rgba(255, 255, 255, 0.05);
-            margin: 20px 0;
-            padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: fadeInUp 0.8s ease-out;
-            position: relative;
-            overflow: hidden;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(0, 255, 136, 0.1), transparent);
-            transform: rotate(45deg);
-            animation: shine 3s linear infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .section h2 {
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            color: #00ff88;
-            position: relative;
-            z-index: 1;
-        }
-
-        .experience-item {
-            margin: 20px 0;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            border-left: 4px solid #00ff88;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .experience-item:hover {
-            transform: translateX(10px);
-            box-shadow: -5px 0 20px rgba(0, 255, 136, 0.3);
-        }
-
-        .experience-title {
-            font-size: 1.2em;
-            color: #00ccff;
-            margin-bottom: 5px;
-        }
-
-        .experience-date {
-            color: #888;
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .skill-item {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 255, 136, 0.2);
-        }
-
-        .skill-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-            border-color: #00ff88;
-        }
-
-        .skill-icon {
-            font-size: 1.5em;
-            margin-bottom: 5px;
-            color: #00ff88;
-        }
-
-        .contact-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            margin: 10px 0;
-            text-align: center;
-        }
-
-        .contact-item:hover {
-            transform: translateY(-5px);
-            background: rgba(0, 255, 136, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-        }
-
-        .code-block {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            overflow-x: auto;
-            border-left: 4px solid #00ff88;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .tech-badge {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px 15px;
-            border-radius: 15px;
-            border: 1px solid #00ccff;
-            color: #00ccff;
-            transition: all 0.3s ease;
-            text-align: center;
-            font-size: 0.9em;
-        }
-
-        .tech-badge:hover {
-            background: rgba(0, 204, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .typing-effect {
-            border-right: 3px solid #00ff88;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { border-color: transparent; }
-            51%, 100% { border-color: #00ff88; }
-        }
-
-        .floating-icons {
-            position: fixed;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            z-index: 10;
-        }
-
-        .floating-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(0, 255, 136, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 10px 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid #00ff88;
-        }
-
-        .floating-icon:hover {
-            background: rgba(0, 255, 136, 0.4);
-            transform: scale(1.1);
-        }
-
-        .neon-text {
-            text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88;
-        }
-
-        .glitch {
-            animation: glitch 2s infinite;
-        }
-
-        @keyframes glitch {
-            0%, 100% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-        }
-
-        .stats-card {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 15px 0;
-            text-align: center;
-            border: 1px solid rgba(0, 255, 136, 0.3);
-        }
-
-        .stats-number {
-            font-size: 2em;
-            color: #00ff88;
-            font-weight: bold;
-        }
-
-        .stats-label {
-            color: #888;
-            font-size: 0.9em;
-        }
-
-        .social-links {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .social-link {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 204, 255, 0.3);
-            cursor: pointer;
-        }
-
-        .social-link:hover {
-            background: rgba(0, 204, 255, 0.2);
-            transform: translateY(-3px);
-        }
-
-        .streaming-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .stream-btn {
-            padding: 15px 25px;
-            border-radius: 15px;
-            text-align: center;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            font-size: 1.1em;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .youtube-btn {
-            background: linear-gradient(135deg, #ff0000, #cc0000);
-            color: white;
-            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.3);
-        }
-
-        .youtube-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(255, 0, 0, 0.5);
-        }
-
-        .twitch-btn {
-            background: linear-gradient(135deg, #9146ff, #7c3aed);
-            color: white;
-            box-shadow: 0 5px 20px rgba(145, 70, 255, 0.3);
-        }
-
-        .twitch-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(145, 70, 255, 0.5);
-        }
-
-        .stream-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .stream-btn:hover::before {
-            left: 100%;
-        }
-
-        @media (max-width: 1200px) {
-            .main-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .side-panel, .right-panel {
-                flex: 1;
-                max-width: 800px;
-                width: 100%;
-                position: relative;
-                top: 0;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .main-container {
-                padding: 10px;
-            }
-            
-            .side-panel, .right-panel {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-        }
+        .center-content{flex:1;max-width:800px;}
+        .avatar{width:120px;height:120px;background:linear-gradient(45deg,#00ff88,#00ccff);border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:48px;font-weight:bold;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 30px rgba(0,255,136,0.5);}
+        @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+        h1{font-size:2.5em;margin-bottom:10px;background:linear-gradient(45deg,#00ff88,#00ccff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-align:center;}
+        .java-badge{display:inline-block;background:linear-gradient(135deg,#ed1d24,#f7931e);color:white;padding:8px 20px;border-radius:20px;font-size:0.9em;font-weight:bold;margin:10px auto;display:block;width:fit-content;box-shadow:0 0 20px rgba(237,29,36,0.5);animation:pulse-badge 2s ease-in-out infinite;}
+        @keyframes pulse-badge{0%,100%{transform:scale(1);box-shadow:0 0 20px rgba(237,29,36,0.5);}50%{transform:scale(1.05);box-shadow:0 0 30px rgba(237,29,36,0.8);}}
+        .section{background:rgba(255,255,255,0.05);margin:20px 0;padding:40px;border-radius:20px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1);animation:fadeInUp 0.8s ease-out;position:relative;overflow:hidden;}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+        .section::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(45deg,transparent,rgba(0,255,136,0.1),transparent);transform:rotate(45deg);animation:shine 3s linear infinite;}
+        @keyframes shine{0%{transform:translateX(-100%)translateY(-100%)rotate(45deg);}100%{transform:translateX(100%)translateY(100%)rotate(45deg);}}
+        .section h2{font-size:1.8em;margin-bottom:20px;color:#00ff88;}
+        .experience-item{margin:20px 0;padding:20px;background:rgba(0,0,0,0.3);border-radius:15px;border-left:4px solid #00ff88;transition:all 0.3s ease;}
+        .experience-item:hover{transform:translateX(10px);box-shadow:-5px 0 20px rgba(0,255,136,0.3);}
+        .experience-title{font-size:1.2em;color:#00ccff;margin-bottom:5px;}
+        .experience-date{color:#888;font-size:0.9em;margin-bottom:10px;}
+        .skills-grid{display:grid;grid-template-columns:1fr;gap:15px;margin-top:20px;}
+        .skill-item{background:rgba(0,0,0,0.3);padding:15px;border-radius:15px;text-align:center;transition:all 0.3s ease;border:1px solid rgba(0,255,136,0.2);}
+        .skill-item:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,255,136,0.3);border-color:#00ff88;}
+        .skill-icon{font-size:1.5em;margin-bottom:5px;color:#00ff88;}
+        .contact-item{background:rgba(255,255,255,0.1);padding:15px;border-radius:15px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);transition:all 0.3s ease;cursor:pointer;margin:10px 0;text-align:center;}
+        .contact-item:hover{transform:translateY(-5px);background:rgba(0,255,136,0.2);box-shadow:0 10px 30px rgba(0,255,136,0.3);}
+        .code-block{background:rgba(0,0,0,0.5);border-radius:10px;padding:15px;margin:10px 0;font-family:'Courier New',monospace;font-size:0.9em;overflow-x:auto;border-left:4px solid #00ff88;}
+        .tech-stack{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+        .tech-badge{background:rgba(0,0,0,0.5);padding:10px 15px;border-radius:15px;border:1px solid #00ccff;color:#00ccff;transition:all 0.3s ease;text-align:center;font-size:0.9em;}
+        .tech-badge:hover{background:rgba(0,204,255,0.2);transform:translateY(-2px);}
+        .floating-icons{position:fixed;top:50%;right:20px;transform:translateY(-50%);z-index:10;}
+        .floating-icon{width:50px;height:50px;background:rgba(0,255,136,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:10px 0;cursor:pointer;transition:all 0.3s ease;border:1px solid #00ff88;}
+        .floating-icon:hover{background:rgba(0,255,136,0.4);transform:scale(1.1);}
+        .stats-card{background:rgba(0,0,0,0.3);border-radius:15px;padding:20px;margin:15px 0;text-align:center;border:1px solid rgba(0,255,136,0.3);}
+        .stats-number{font-size:2em;color:#00ff88;font-weight:bold;}
+        .stats-label{color:#888;font-size:0.9em;}
+        .social-links{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+        .social-link{background:rgba(0,0,0,0.3);padding:15px;border-radius:15px;text-align:center;transition:all 0.3s ease;border:1px solid rgba(0,204,255,0.3);cursor:pointer;}
+        .social-link:hover{background:rgba(0,204,255,0.2);transform:translateY(-3px);}
+        .streaming-buttons{display:flex;flex-direction:column;gap:15px;margin-top:30px;}
+        .stream-btn{padding:15px 25px;border-radius:15px;text-align:center;font-weight:bold;cursor:pointer;transition:all 0.3s ease;border:none;font-size:1.1em;position:relative;overflow:hidden;}
+        .youtube-btn{background:linear-gradient(135deg,#ff0000,#cc0000);color:white;box-shadow:0 5px 20px rgba(255,0,0,0.3);}
+        .twitch-btn{background:linear-gradient(135deg,#9146ff,#7c3aed);color:white;box-shadow:0 5px 20px rgba(145,70,255,0.3);}
+        .stream-btn:hover{transform:translateY(-3px);}
+        .stream-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);transition:left 0.5s;}
+        .stream-btn:hover::before{left:100%;}
+        @media(max-width:1200px){.main-container{flex-direction:column;align-items:center;}.side-panel,.right-panel{flex:1;max-width:800px;width:100%;position:relative;top:0;}}
+        @media(max-width:768px){.main-container{padding:10px;}.side-panel,.right-panel{padding:20px;}h1{font-size:2em;}}
     </style>
 </head>
 <body>
     <div class="particles" id="particles"></div>
-    
     <div class="floating-icons">
         <div class="floating-icon" onclick="scrollToTop()">↑</div>
         <div class="floating-icon" onclick="toggleTheme()">🎮</div>
@@ -488,42 +77,20 @@
 
     <div class="main-container">
         <aside class="side-panel">
-            <div class="avatar neon-text">S</div>
-            <h1 class="glitch">SrValo</h1>
+            <div class="avatar">S</div>
+            <h1>SrValo</h1>
             <div class="java-badge">☕ Java Developer</div>
-            <p style="text-align: center; margin: 10px 0; color: #888;">🎮 Especialista en Administración de Servidores Minecraft</p>
-            
-            <div class="contact-item" onclick="copyDiscord()">
-                <span>💬 Discord: cai.zfocuceado</span>
-            </div>
-            <div class="contact-item">
-                <span>📍 Argentina</span>
-            </div>
-            <div class="contact-item">
-                <span>👤 17 años</span>
-            </div>
-
+            <p style="text-align:center;margin:10px 0;color:#888;">🎮 Especialista en Administración de Servidores Minecraft</p>
+            <div class="contact-item" onclick="copyDiscord()"><span>💬 Discord: cai.zfocuceado</span></div>
+            <div class="contact-item"><span>📍 Argentina</span></div>
+            <div class="contact-item"><span>👤 17 años</span></div>
             <div class="streaming-buttons">
-                <button class="stream-btn youtube-btn" onclick="window.open('https://youtube.com/@CaizFocuceado', '_blank')">
-                    📺 YouTube
-                </button>
-                <button class="stream-btn twitch-btn" onclick="window.open('https://twitch.tv/srresuyt', '_blank')">
-                    🔴 Twitch
-                </button>
+                <button class="stream-btn youtube-btn" onclick="window.open('https://youtube.com/@CaizFocuceado','_blank')">📺 YouTube</button>
+                <button class="stream-btn twitch-btn" onclick="window.open('https://twitch.tv/srresuyt','_blank')">🔴 Twitch</button>
             </div>
-
-            <div class="stats-card">
-                <div class="stats-number">3+</div>
-                <div class="stats-label">Servidores Gestionados</div>
-            </div>
-            <div class="stats-card">
-                <div class="stats-number">2+</div>
-                <div class="stats-label">Años de Experiencia</div>
-            </div>
-            <div class="stats-card">
-                <div class="stats-number">1000+</div>
-                <div class="stats-label">Jugadores Atendidos</div>
-            </div>
+            <div class="stats-card"><div class="stats-number">3+</div><div class="stats-label">Servidores Gestionados</div></div>
+            <div class="stats-card"><div class="stats-number">2+</div><div class="stats-label">Años de Experiencia</div></div>
+            <div class="stats-card"><div class="stats-number">1000+</div><div class="stats-label">Jugadores Atendidos</div></div>
         </aside>
 
         <main class="center-content">
@@ -534,69 +101,44 @@
 
             <section class="section">
                 <h2>💼 Experiencia</h2>
-                <div class="experience-item">
-                    <div class="experience-title">Moderador – SkylexMC</div>
-                    <div class="experience-date">2022–2024</div>
-                    <p>Moderación, resolución de conflictos, reporte de bugs y mantenimiento de la comunidad activa.</p>
-                </div>
-                <div class="experience-item">
-                    <div class="experience-title">Administrador – StealPvP</div>
-                    <div class="experience-date">2022–2023</div>
-                    <p>Configuración de plugins, gestión de staff, organización de eventos y mantenimiento del servidor.</p>
-                </div>
-                <div class="experience-item">
-                    <div class="experience-title">Owner – Koruh</div>
-                    <div class="experience-date">2025</div>
-                    <p>Gestión total del servidor, desarrollo de estrategias de crecimiento y organización de eventos masivos.</p>
-                </div>
+                <div class="experience-item"><div class="experience-title">Owner – Koruh</div><div class="experience-date">2025</div><p>Gestión total del servidor, desarrollo de estrategias de crecimiento y organización de eventos masivos.</p></div>
+                <div class="experience-item"><div class="experience-title">Moderador – AstralMC</div><div class="experience-date">2024</div><p>Moderación, resolución de conflictos, reporte de bugs y mantenimiento de la comunidad activa.</p></div>
+                <div class="experience-item"><div class="experience-title">Moderador – DynamicPvP</div><div class="experience-date">2024</div><p>Moderación, resolución de conflictos, reporte de bugs y mantenimiento de la comunidad activa.</p></div>
+                <div class="experience-item"><div class="experience-title">Moderador – HolyPvP</div><div class="experience-date">2024</div><p>Moderación, resolución de conflictos, reporte de bugs y mantenimiento de la comunidad activa.</p></div>
+                <div class="experience-item"><div class="experience-title">Moderador – HazelMC</div><div class="experience-date">2024</div><p>Moderación, resolución de conflictos, reporte de bugs y mantenimiento de la comunidad activa.</p></div>
+                <div class="experience-item"><div class="experience-title">Moderador – MineFun</div><div class="experience-date">2024</div><p>Moderación, resolución de conflictos, reporte de bugs y mantenimiento de la comunidad activa.</p></div>
+                <div class="experience-item"><div class="experience-title">Administrador – StealPvP</div><div class="experience-date">2023</div><p>Configuración de plugins, gestión de staff, organización de eventos y mantenimiento del servidor.</p></div>
+                <div class="experience-item"><div class="experience-title">Moderador – SkylexMC</div><div class="experience-date">2022</div><p>Moderación, resolución de conflictos, reporte de bugs y mantenimiento de la comunidad activa.</p></div>
             </section>
 
             <section class="section">
                 <h2>💻 Development</h2>
                 <p>Desarrollador Java especializado en plugins de Minecraft con experiencia en:</p>
-                <div class="code-block">
-                    <code>
+                <div class="code-block"><code>
 // Ejemplo de plugin personalizado<br>
 public class KoruhCore extends JavaPlugin {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;@Override<br>
-&nbsp;&nbsp;&nbsp;&nbsp;public void onEnable() {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getLogger().info("KoruhCore activado!");<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new PlayerManager(this);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;@Override<br>
+&nbsp;&nbsp;public void onEnable() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;getLogger().info("KoruhCore activado!");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;new PlayerManager(this);<br>
+&nbsp;&nbsp;}<br>
 }
-                    </code>
-                </div>
+                </code></div>
             </section>
 
             <section class="section">
                 <h2>🛠️ Habilidades</h2>
                 <div class="skills-grid">
-                    <div class="skill-item">
-                        <div class="skill-icon">⚙️</div>
-                        <h3>LuckPerms</h3>
-                        <p>Configuración avanzada</p>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">📋</div>
-                        <h3>Essentials</h3>
-                        <p>Comandos y configuraciones</p>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">🏗️</div>
-                        <h3>WorldEdit</h3>
-                        <p>Construcción y edición</p>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">🛡️</div>
-                        <h3>Moderación</h3>
-                        <p>Gestión de reportes</p>
-                    </div>
+                    <div class="skill-item"><div class="skill-icon">⚙️</div><h3>LuckPerms</h3><p>Configuración avanzada</p></div>
+                    <div class="skill-item"><div class="skill-icon">📋</div><h3>Essentials</h3><p>Comandos y configuraciones</p></div>
+                    <div class="skill-item"><div class="skill-icon">🏗️</div><h3>WorldEdit</h3><p>Construcción y edición</p></div>
+                    <div class="skill-item"><div class="skill-icon">🛡️</div><h3>Moderación</h3><p>Gestión de reportes</p></div>
                 </div>
             </section>
         </main>
 
         <aside class="right-panel">
-            <h3 style="color: #00ff88; margin-bottom: 20px;">🚀 Tech Stack</h3>
+            <h3 style="color:#00ff88;margin-bottom:20px;">🚀 Tech Stack</h3>
             <div class="tech-stack">
                 <div class="tech-badge">Java 8-17</div>
                 <div class="tech-badge">Spigot API</div>
@@ -609,124 +151,28 @@ public class KoruhCore extends JavaPlugin {<br>
                 <div class="tech-badge">JSON</div>
             </div>
 
-            <h3 style="color: #00ff88; margin: 30px 0 20px;">🌐 Idiomas</h3>
-            <div class="language-item" style="background: rgba(0, 255, 136, 0.2); padding: 15px; border-radius: 15px; border: 1px solid #00ff88; text-align: center;">
+            <h3 style="color:#00ff88;margin:30px 0 20px;">🌐 Idiomas</h3>
+            <div style="background:rgba(0,255,136,0.2);padding:15px;border-radius:15px;border:1px solid #00ff88;text-align:center;">
                 <strong>Español</strong> - Nativo
             </div>
 
-            <h3 style="color: #00ff88; margin: 30px 0 20px;">🔗 Conecta</h3>
+            <h3 style="color:#00ff88;margin:30px 0 20px;">🔗 Conecta</h3>
             <div class="social-links">
-                <div class="social-link" onclick="window.open('https://discord.com/users/cai.zfocuceado', '_blank')">
-                    <span>💬 Discord</span>
-                </div>
-                <div class="social-link" onclick="window.open('https://github.com/ftedxf', '_blank')">
-                    <span>🐱 GitHub</span>
-                </div>
-                <div class="social-link" onclick="window.open('https://www.spigotmc.org/members/srvalo.1234567/', '_blank')">
-                    <span>🎯 SpigotMC</span>
-                </div>
+                <div class="social-link" onclick="window.open('https://discord.com/users/cai.zfocuceado','_blank')">💬 Discord</div>
+                <div class="social-link" onclick="window.open('https://github.com/ftedxf','_blank')">🐱 GitHub</div>
+                <div class="social-link" onclick="window.open('https://www.spigotmc.org/members/srvalo.1234567/','_blank')">🎯 SpigotMC</div>
             </div>
         </aside>
     </div>
 
     <script>
-        // Partículas animadas
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Efecto de escritura
-        function typeWriter(element, text, speed = 50) {
-            let i = 0;
-            element.innerHTML = '';
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
-
-        // Copiar Discord al portapapeles
-        function copyDiscord() {
-            navigator.clipboard.writeText('cai.zfocuceado').then(() => {
-                alert('¡Discord copiado al portapapeles!');
-            });
-        }
-
-        // Scroll al inicio
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Cambiar tema
-        let isDark = true;
-        function toggleTheme() {
-            const body = document.body;
-            if (isDark) {
-                body.style.background = 'linear-gradient(135deg, #ffffff 0%, #f0f0f0 50%, #e0e0e0 100%)';
-                body.style.color = '#000';
-                isDark = false;
-            } else {
-                body.style.background = 'linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%)';
-                body.style.color = '#fff';
-                isDark = true;
-            }
-        }
-
-        // Animaciones al hacer scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationDelay = '0s';
-                    entry.target.style.animationPlayState = 'running';
-                }
-            });
-        }, observerOptions);
-
-        // Inicializar
-        document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            
-            // Aplicar observador a las secciones
-            document.querySelectorAll('.section').forEach(section => {
-                observer.observe(section);
-            });
-
-            // Efecto de escritura en el perfil
-            const profileText = document.querySelector('.typing-effect');
-            const originalText = profileText.textContent;
-            setTimeout(() => {
-                typeWriter(profileText, originalText, 30);
-            }, 1000);
-        });
-
-        // Efecto parallax suave
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.particles');
-            parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
-        });
+        function createParticles(){const p=document.getElementById('particles');for(let i=0;i<50;i++){const e=document.createElement('div');e.className='particle';e.style.left=Math.random()*100+'%';e.style.animationDelay=Math.random()*6+'s';e.style.animationDuration=(Math.random()*3+3)+'s';p.appendChild(e);}}
+        function typeWriter(el,txt,s=50){let i=0;el.innerHTML='';(function t(){if(i<txt.length){el.innerHTML+=txt.charAt(i);i++;setTimeout(t,s);}})();}
+        function copyDiscord(){navigator.clipboard.writeText('cai.zfocuceado').then(()=>alert('¡Discord copiado al portapapeles!'));}
+        function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
+        let isDark=true;function toggleTheme(){const b=document.body;if(isDark){b.style.background='linear-gradient(135deg,#ffffff 0%,#f0f0f0 50%,#e0e0e0 100%)';b.style.color='#000';isDark=false;}else{b.style.background='linear-gradient(135deg,#0f0f0f 0%,#1a1a2e 50%,#16213e 100%)';b.style.color='#fff';isDark=true;}}
+        document.addEventListener('DOMContentLoaded',()=>{createParticles();const profile=document.querySelector('.typing-effect');const text=profile.textContent;setTimeout(()=>typeWriter(profile,text,30),1000);});
+        window.addEventListener('scroll',()=>{const s=window.pageYOffset;document.querySelector('.particles').style.transform=`translateY(${s*0.5}px)`;});
     </script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"96f4dd9fccd4d841","version":"2025.8.0","r":1,"serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"token":"b7125bf8d1b64b7cba3f17e4b0b70ae8","b":1}' crossorigin="anonymous"></script>
 </body>
-
-<!-- Mirrored from greathost.es/webs/7553e5c4-4f45-4c83-ac9b-722cc0200049/zFocuxCV by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Aug 2025 01:19:49 GMT -->
 </html>
